@@ -112,6 +112,7 @@ public class MainActivity extends Activity {
     private static final boolean BLOCK_MEDIA = BuildConfig.BLOCK_MEDIA;
     private static final boolean BLOCK_ADS = BuildConfig.BLOCK_ADS;
     private static final boolean NO_SSL = BuildConfig.NO_SSL;
+    private static final String USER_AGENT = "Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36";
     private WebView mWebView;
     private View mCustomView;
     private CustomViewCallback mCustomViewCallback;
@@ -180,6 +181,9 @@ public class MainActivity extends Activity {
         webSettings.setDefaultTextEncodingName("utf-8");
         webSettings.setPluginState(PluginState.ON);
         webSettings.setAllowFileAccess(false);
+        if (!USER_AGENT.isEmpty()) {
+            webSettings.setUserAgentString(USER_AGENT);
+        }
         if (BLOCK_MEDIA) {
             webSettings.setLoadsImagesAutomatically(false);
         }
